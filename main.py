@@ -21,7 +21,7 @@ def parce_args() -> argparse.Namespace:
 def main():
     args = parce_args()
     if str(args.functions) in functions_inicialization_dict:
-        pass
+        functions_inicialization_dict[args.functions].main()
     else:
         print(colored(f'Not search inicialization function name, may be you want write this function:\n\t>>> {", ".join(key for key in functions_inicialization_dict)}', 'red'))
 
