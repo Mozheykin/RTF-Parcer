@@ -12,8 +12,8 @@ def parce_args() -> argparse.Namespace:
     parce_arg = argparse.ArgumentParser(description='function')
     parce_arg.add_argument('-f', dest='functions', required=True)
     parce_arg.add_argument('-s', dest='save_directory', default='')
-    parce_arg.add_argument('-db', dest='data_base', default='/resources/result.db')
-    parce_arg.add_argument('-csv', dest='csv', default='/resources/documents.csv')
+    parce_arg.add_argument('-db', dest='data_base', default='resources/result.db')
+    parce_arg.add_argument('-csv', dest='csv', default='resources/documents.csv')
     return parce_arg.parse_args()
 
 

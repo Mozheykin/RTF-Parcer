@@ -5,22 +5,26 @@ class Database:
         self.main_table = name_table
         self.db = sqlite3.connect(path_db)
         self.cursor = self.db.cursor()
-        self.db.cursor.execute(f'''CREATE TABLE IF NOT EXISTS {self.main_table}(
-            id INTEGER,
-            doc_id INTEGER,
-            court_code INTEGER,
-            judgment_code INTEGER,
-            justice_kind INTEGER,
-            category_code INTEGER,
-            cause_num TEXT,
-            adjudication_date TEXT,
-            receipt_date TEXT,
-            judje TEXT,
-            doc_url,
-            status INTEGER,
-            date_publ TEXT)''' )
+        try:
+            self.cursor.execute(f"""CREATE TABLE IF NOT EXISTS {self.main_table}(
+                `id` INTEGER,
+                `doc_id` INTEGER,
+                `court_code` INTEGER,
+                `judgment_code` INTEGER,
+                `justice_kind` INTEGER,
+                `category_code` INTEGER,
+                `cause_num` TEXT,
+                `adjudication_date` TEXT,
+                `receipt_date` TEXT,
+                `judje` TEXT,
+                `doc_url` TEXT,
+                `status` INTEGER,
+                `date_publ` TEXT,
+                `save_locale` BOOL)""")
+        except self.db.Error as err:
+            print(err)
         self.db.commit()
     
     def insert(self, values: list, name_table='main'):
         with self.db:
-            return self.cursor.execute(f'INSERT INTO {name_table} VALUES({values})')
+            return self.cursor.execute(f'INSERT INTO {name_table} VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', values)
