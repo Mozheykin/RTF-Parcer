@@ -33,7 +33,7 @@ class Database:
     
     def get_not_parce_advocate(self):
         with self.db:
-            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `advocate`=? AND `doc_url`!=?', ('', ''))
+            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `advocate`=? AND `doc_url`!=?', ('', '')).fetchall()
     
     def update_advocate(self, advocate: str, id: str):
         with self.db:

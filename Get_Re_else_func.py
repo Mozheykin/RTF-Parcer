@@ -137,7 +137,10 @@ def get_text_for_url(url: str) -> str:
         str: [description]
     """
     headers = {'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:96.0) Gecko/20100101 Firefox/96.0'}
-    response = requests.get(url=url, headers=headers)
+    try:
+        response = requests.get(url=url, headers=headers, timeout=5)
+    except requests.exceptions.Timeout:
+        return 'Timeout'
     
             
     return rtf_to_text(response.text)
