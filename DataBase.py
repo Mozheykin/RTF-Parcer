@@ -20,11 +20,21 @@ class Database:
                 `doc_url` TEXT,
                 `status` INTEGER,
                 `date_publ` TEXT,
-                `save_locale` BOOL)""")
+                `save_locale` BOOL,
+                `advocate` TEXT,
+                `court` TEXT)""")
         except self.db.Error as err:
             print(err)
         self.db.commit()
     
-    def insert(self, values: list, name_table='main'):
+    def insert(self, values: list):
         with self.db:
-            return self.cursor.execute(f'INSERT INTO {name_table} VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', values)
+            return self.cursor.execute(f'INSERT INTO {self.main_table} VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', values)
+    
+    def get_not_parce_advocate(self):
+        with self.db:
+            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `advocate`=? AND `doc_url`!=?', ('', ''))
+    
+    def update_advocate(self, advocate: str, id: str):
+        with self.db:
+            return self.cursor.execute(f'UPDATE {self.main_table} SET `advocate`=? WHERE `id`=?', (advocate, id))
