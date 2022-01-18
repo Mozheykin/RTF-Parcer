@@ -11,6 +11,19 @@ functions_inicialization_dict = {
 }
 
 def parce_args() -> argparse.Namespace:
+    """[summary]
+    В функции получаются основные флаги объявленные в командной строке
+    Returns:
+        argparse.Namespace: [description]
+        Возвращает распарсенные аргументы объявленные флагами,
+        использует argparce для их добычи.
+        -f обязательный флаг, указывает на инициализированную функцию, 
+            на данный момент их 4 штуки, а именно:
+            Save_CSV_in_DataBase - Сохранение CSV файла в базу данных;
+            Parce_DB_advocate - парсинг адвокатов;
+            Parce_DB_court - парсинг меры пресечения;
+            Save_RTF_in_Locale - сохранение RTF файлов в локальное хранилище;
+    """
     parce_arg = argparse.ArgumentParser(description='function')
     parce_arg.add_argument('-f', dest='functions', required=True)
     parce_arg.add_argument('-s', dest='save_directory', default='resources/')
@@ -21,6 +34,13 @@ def parce_args() -> argparse.Namespace:
 
 
 def main():
+    """
+    Основная функция отвечающая за запуск функций.
+    Передает в каждую функцию 3 параметра, а именно:
+    - дирректория для сохранения локальных данных RTF;
+    - дирректория для сохранения базы данных и её имя;
+    - дирректория где находится CSV файл и его название;
+    """
     args = parce_args()
     if str(args.functions) in functions_inicialization_dict:
         functions_inicialization_dict[args.functions].main(path_db=args.data_base, path_csv=args.csv, path_some=args.save_directory)

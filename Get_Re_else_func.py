@@ -4,13 +4,16 @@ import requests
 
 
 def get_advokat_re(text: str) -> str:
-    """[summary]
+    """[summary] 
+        Функция для парсинга данных из текста по категориям: Адвокаты, Защитники, Юристы
 
     Args:
         text (str): [description]
+            Получается текст постановления
 
     Returns:
         str: [description]
+            Возвращает найденные регулярными выражениями фамилии и инициалы того или иного должностного лица
     """
 
     if 'адвок' in text:
@@ -32,7 +35,7 @@ def get_advokat_re(text: str) -> str:
         else:
             return 'exception Jur'
     else:
-        return ''
+        return '-'
 
 
 def get_criminal_court(text: str) -> str:
@@ -43,14 +46,6 @@ def get_criminal_court(text: str) -> str:
 
     Returns:
         str: [description] Возвращаются найденные значения из перечня
-        перебувати, знаходитись, утримується
-        [Пп]еребува(ти|ють|в)\s
-        [Зз]находи(ти|тись|ться|вся)\s
-        [Уу]триму(ється|вався|ватись|)\s
-
-        ([Пп]еребува(ти|ють|в|є)|[Зз]находи(ти|тись|ться|вся)|[Уу]триму(ється|вався|ватись))\s((в\s)|(у\s))*(ДУ\s)*([А-ЯЁЇІЄҐ][а-яёїієґ]+\s)*((ОСОБА\_\d)|([Оо]соба\_\d)|(СІЗО)|([Сс]лідчий ізолятор))
-
-        У Х В А Л И В:
     """
     
     court_sizo = {
@@ -121,7 +116,7 @@ def get_criminal_court(text: str) -> str:
         if regular:
             return "Особисте зобов'язання/Особиста порука"
     
-    return ''
+    return '-'
 
 
 def get_text_file(path_file: str):

@@ -3,6 +3,13 @@ from alive_progress import alive_bar
 import DataBase
 
 def main(path_some, path_db='resources/result.db', path_csv='resources/documents.csv'):
+    """[summary]
+            Получение построчно данных из CSV файла и запись в Базу Данных
+    Args:
+        path_some ([type]): [description]
+        path_db (str, optional): [description]. Defaults to 'resources/result.db'.
+        path_csv (str, optional): [description]. Defaults to 'resources/documents.csv'.
+    """
     db = DataBase.Database(path_db=os.path.join(os.getcwd(), path_db))
     length = 0
     with open(file=os.path.join(os.getcwd(), path_csv), newline='') as file:

@@ -5,6 +5,14 @@ from alive_progress import alive_bar
 
 
 def main(path_csv, path_some='resources/', path_db='resources/result.db'):
+    """[summary]
+            Получение списка не сохраненных данных, получение текста по url и
+            сохранение файла в локале.
+    Args:
+        path_csv ([type]): [description]
+        path_some (str, optional): [description]. Defaults to 'resources/'.
+        path_db (str, optional): [description]. Defaults to 'resources/result.db'.
+    """
     path_db = os.path.join(os.getcwd(), path_db)
     assert(os.path.isfile(path_db))
     db = DataBase.Database(path_db=path_db)
