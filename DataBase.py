@@ -116,3 +116,6 @@ class Database:
         """
         with self.db:
             return self.cursor.execute(f'UPDATE {self.main_table} SET `save_locale`=? WHERE `id`=?', ('1', id))
+    
+    def end_id(self):
+        return self.db.execute(f'SELECT id FROM {self.main_table} ORDER BY id DESC LIMIT 1').fetchone()
