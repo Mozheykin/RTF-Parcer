@@ -38,3 +38,11 @@ class Database:
     def update_advocate(self, advocate: str, id: str):
         with self.db:
             return self.cursor.execute(f'UPDATE {self.main_table} SET `advocate`=? WHERE `id`=?', (advocate, id))
+
+    def get_not_parce_court(self):
+        with self.db:
+            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `court`=? AND `doc_url`!=? AND `justice_kind`=?', ('', '', '2')).fetchall()
+    
+    def update_court(self, court: str, id: str):
+        with self.db:
+            return self.cursor.execute(f'UPDATE {self.main_table} SET `court`=? WHERE `id`=?', (court, id))

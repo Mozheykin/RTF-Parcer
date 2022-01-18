@@ -34,24 +34,24 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
             }
 
             if adv_d['status'] != '0':
-                path = (path_some, f"{adv_d['receipt_date'].split('-')[0][1:]}/", f"{adv_d['judgment_code']}/", f"{adv_d['justice_kind']}/", f"{adv_d['court_code']}/", f"{adv_d['doc_id']}.txt")
+                path = (path_some, f"{adv_d['receipt_date'].split('-')[0][1:]}/", f"{adv_d['judgment_code']}/", 
+                f"{adv_d['justice_kind']}/", f"{adv_d['court_code']}/", f"{adv_d['doc_id']}.txt")
 
                 path_file = os.getcwd()
 
                 for value in path:
                     path_file = os.path.join(path_file, value)
                 
-                # print(adv_d['doc_url'])
-
-                # if adv_d['save_locale'] == '1':
-                #     text = Get_Re_else_func.get_text_file(path_file=path_file)
-                # else:
-                text = Get_Re_else_func.get_text_for_url(url=adv_d['doc_url'])
-                if 'Timeout' in text:
-                    get_adv = text
+                if adv_d['save_locale'] == '1':
+                    text = Get_Re_else_func.get_text_file(path_file=path_file)
                 else:
-                    get_adv = Get_Re_else_func.get_advokat_re(text)
-                print(get_adv)
+                    text = Get_Re_else_func.get_text_for_url(url=adv_d['doc_url'])
+                    if 'Timeout' in text:
+                        get_adv = text
+                        break
+                    
+                get_adv = Get_Re_else_func.get_advokat_re(text)
+
                 db.update_advocate(advocate=get_adv, id=adv_d['id'])
-            
+                
             bar()

@@ -1,11 +1,12 @@
 import argparse
-import SaveCSVinDB, DataBase, ParceDBadvocate
+import SaveCSVinDB, DataBase, ParceDBadvocate, ParceDBcourt
 from termcolor import colored
 
 
 functions_inicialization_dict = {
     'Save_CSV_in_DataBase': SaveCSVinDB,
     'Parce_DB_advocate': ParceDBadvocate,
+    'Parce_DB_court': ParceDBcourt,
     'DataBase': DataBase,
 }
 

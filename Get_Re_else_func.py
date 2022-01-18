@@ -12,6 +12,7 @@ def get_advokat_re(text: str) -> str:
     Returns:
         str: [description]
     """
+
     if 'адвок' in text:
         advocate = re.search(r'(?:[Аа]двокат(а́|а|ів|ом|і́в|о́м|а́ми|ами|у́|у|а́х|ах|и|и́)*(\s+|( \s)+)(-\s)*)(([А-ЯЁЇІЄҐ][а-яёїієґ]+\s[А-ЯЁЇІЄҐ][а-яёїієґ]+\s[А-ЯЁЇІЄҐ][а-яёїієґ]+\s)|([А-ЯЁЇІЄҐ][а-яёїієґ]+\s[А-ЯЁЇІЄҐ]\.\s*[А-ЯЁЇІЄҐ]\.))', text)
         if not advocate  is None: 
@@ -141,6 +142,5 @@ def get_text_for_url(url: str) -> str:
         response = requests.get(url=url, headers=headers, timeout=5)
     except requests.exceptions.Timeout:
         return 'Timeout'
-    
-            
-    return rtf_to_text(response.text)
+    result = rtf_to_text(response.text)
+    return result
