@@ -125,8 +125,9 @@ def get_criminal_court(text: str) -> str:
 
 
 def get_text_file(path_file: str):
-    pass
-
+    with open(path_file, 'r') as file:
+        text = file.read
+    return text
 
 def get_text_for_url(url: str) -> str:
     """[summary]

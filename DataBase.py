@@ -46,3 +46,11 @@ class Database:
     def update_court(self, court: str, id: str):
         with self.db:
             return self.cursor.execute(f'UPDATE {self.main_table} SET `court`=? WHERE `id`=?', (court, id))
+    
+    def get_not_save(self):
+        with self.db:
+            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `save_locale`=? AND `doc_url`!=?', ('0', '')).fetchall()
+    
+    def update_save(self, id: str):
+        with self.db:
+            return self.cursor.execute(f'UPDATE {self.main_table} SET `save_locale`=? WHERE `id`=?', ('1', id))

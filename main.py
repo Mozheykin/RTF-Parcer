@@ -1,5 +1,5 @@
 import argparse
-import SaveCSVinDB, DataBase, ParceDBadvocate, ParceDBcourt
+import SaveCSVinDB, DataBase, ParceDBadvocate, ParceDBcourt, SaveRTFinLocale
 from termcolor import colored
 
 
@@ -7,7 +7,7 @@ functions_inicialization_dict = {
     'Save_CSV_in_DataBase': SaveCSVinDB,
     'Parce_DB_advocate': ParceDBadvocate,
     'Parce_DB_court': ParceDBcourt,
-    'DataBase': DataBase,
+    'Save_RTF_in_Locale': SaveRTFinLocale,
 }
 
 def parce_args() -> argparse.Namespace:

@@ -40,7 +40,7 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
                 for value in path:
                     path_file = os.path.join(path_file, value)
                 
-                if cour_d['save_locale'] == '1':
+                if all([cour_d['save_locale'] == '1', os.path.isfile(path_file)]):
                     text = Get_Re_else_func.get_text_file(path_file=path_file)
                 else:
                     text = Get_Re_else_func.get_text_for_url(url=cour_d['doc_url'])
