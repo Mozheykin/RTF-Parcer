@@ -35,8 +35,4 @@ def main(path_some, path_db='resources/result.db', path_csv='resources/documents
                 db.insert(values=values)
                 # if num % 1000 == 0:
                 #     print(num)
-<<<<<<< HEAD
                 bar()
-=======
-                bar()
->>>>>>> develop
