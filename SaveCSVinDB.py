@@ -1,4 +1,3 @@
-from curses.ascii import isdigit
 import os
 from alive_progress import alive_bar
 import DataBase
