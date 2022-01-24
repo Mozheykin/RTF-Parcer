@@ -16,12 +16,11 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
     path_db = os.path.join(os.getcwd(), path_db)
     assert(os.path.isfile(path_db))
     db = DataBase.Database(path_db=path_db)
-    list_not_parce_advocate = db.get_not_parce_advocate()
+    len_advocate = db.get_len_advocate()[0]
 
-    
-
-    with alive_bar(len(list_not_parce_advocate), title='ParceDBadvocate:') as bar:
-        for advocate in list_not_parce_advocate:
+    with alive_bar(len_advocate, title='ParceDBadvocate:') as bar:
+        while db.get_len_advocate()[0] > 1:
+            advocate = db.get_not_parce_advocate()
             adv_d = {
                 'id': advocate[0],
                 'doc_id': advocate[1],
