@@ -85,7 +85,7 @@ class Database:
         with self.db:
             return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `court`=? AND `doc_url`!=? AND `justice_kind`=?', ('', '', '2')).fetchone()
     
-    def get_len_advocate(self):
+    def get_len_court(self):
         with self.db:
             return self.cursor.execute(f'SELECT COUNT(*) as count FROM {self.main_table} WHERE `court`=? AND `doc_url`!=? AND `justice_kind`=?', ('', '', '2')).fetchone() 
     
