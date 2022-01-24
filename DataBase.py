@@ -53,7 +53,12 @@ class Database:
                 Возвращает данные списком
         """
         with self.db:
-            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `advocate`=? AND `doc_url`!=?', ('', '')).fetchall()
+            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `advocate`=? AND `doc_url`!=?', ('', '')).fetchone()
+    
+    def get_len_advocate(self):
+        with self.db:
+            return self.cursor.execute(f'SELECT COUNT(*) as count FROM {self.main_table} WHERE `advocate`=? AND `doc_url`!=?', ('', '')).fetchone() 
+
     
     def update_advocate(self, advocate: str, id: str):
         """[summary]
@@ -78,7 +83,11 @@ class Database:
                 Возвращает данные списком
         """
         with self.db:
-            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `court`=? AND `doc_url`!=? AND `justice_kind`=?', ('', '', '2')).fetchall()
+            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `court`=? AND `doc_url`!=? AND `justice_kind`=?', ('', '', '2')).fetchone()
+    
+    def get_len_advocate(self):
+        with self.db:
+            return self.cursor.execute(f'SELECT COUNT(*) as count FROM {self.main_table} WHERE `court`=? AND `doc_url`!=? AND `justice_kind`=?', ('', '', '2')).fetchone() 
     
     def update_court(self, court: str, id: str):
         """[summary]
