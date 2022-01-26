@@ -19,7 +19,7 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
     len_advocate = db.get_len_advocate()[0]
 
     with alive_bar(len_advocate, title='ParceDBadvocate:') as bar:
-        while db.get_len_advocate()[0] > 1:
+        for _ in range(len_advocate):
             advocate = db.get_not_parce_advocate()
             adv_d = {
                 'id': advocate[0],

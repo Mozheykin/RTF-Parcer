@@ -111,7 +111,12 @@ class Database:
                 Возвращаем все данные
         """
         with self.db:
-            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `save_locale`=? AND `doc_url`!=?', ('0', '')).fetchall()
+            return self.cursor.execute(f'SELECT * FROM {self.main_table} WHERE `save_locale`=? AND `doc_url`!=?', ('0', '')).fetchone()
+    
+    def get_len_not_save(self):
+        with self.db:
+            return self.cursor.execute(f'SELECT COUNT(*) as count FROM {self.main_table} WHERE `save_locale`=? AND `doc_url`!=?', ('0', '')).fetchone()
+
     
     def update_save(self, id: str):
         """[summary]
