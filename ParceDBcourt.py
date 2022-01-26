@@ -19,7 +19,7 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
     len_court = db.get_len_court()[0]
 
     with alive_bar(len_court, title='ParceDBcourt:') as bar:
-        while db.get_len_court()[0] > 1:
+        for _ in range(len_court):
             court = db.get_not_parce_court()
             cour_d = {
                 'id': court[0],

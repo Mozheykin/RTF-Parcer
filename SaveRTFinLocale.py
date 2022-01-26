@@ -16,12 +16,13 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
     path_db = os.path.join(os.getcwd(), path_db)
     assert(os.path.isfile(path_db))
     db = DataBase.Database(path_db=path_db)
-    list_not_save = db.get_not_save()
+    len_not_save = db.get_len_not_save()[0]
 
     
 
-    with alive_bar(len(list_not_save), title='SaveLocale:') as bar:
-        for save in list_not_save:
+    with alive_bar(len_not_save, title='SaveLocale:') as bar:
+        for _ in range(len_not_save):
+            save = db.get_not_save()
             sav_d = {
                 'id': save[0],
                 'doc_id': save[1],
