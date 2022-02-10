@@ -45,6 +45,10 @@ class Database:
         with self.db:
             return self.cursor.execute(f'INSERT INTO {self.main_table} VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', values)
     
+    def get_all(self):
+        with self.db:
+            return self.cursor.execute(f'SELECT * FROM {self.main_table}').fetchall()
+    
     def get_not_parce_advocate(self):
         """[summary]
                 Функция для получения пустых полей адвокатов

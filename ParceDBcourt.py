@@ -1,5 +1,6 @@
 import Get_Re_else_func
 import DataBase
+import DB_postgresql
 import os
 from alive_progress import alive_bar
 
@@ -15,7 +16,8 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
     """
     path_db = os.path.join(os.getcwd(), path_db)
     assert(os.path.isfile(path_db))
-    db = DataBase.Database(path_db=path_db)
+    # db = DataBase.Database(path_db=path_db)
+    db = DB_postgresql.DB_postgress()
     len_court = db.get_len_court()[0]
 
     with alive_bar(len_court, title='ParceDBcourt:') as bar:
