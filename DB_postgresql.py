@@ -3,7 +3,7 @@ from contextlib import closing
 
 
 class DB_postgress:
-    def __init__(self, name='rtf-parcer', user='postgres', password='qwerty', host='localhost'):
+    def __init__(self, name='rtf-parcer', user='postgres', password='qwerty', host='127.0.0.1'):
         self.name = name
         self.user = user
         self.password = password
@@ -18,7 +18,7 @@ class DB_postgress:
                     id SERIAL PRIMARY KEY,
                     doc_id INTEGER,
                     court_code INTEGER,
-                    judgment_code INTEGER,
+                    judgment_code TEXT,
                     justice_kind INTEGER,
                     category_code TEXT,
                     cause_num TEXT,
