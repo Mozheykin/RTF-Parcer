@@ -1,9 +1,8 @@
 import psycopg2
-from contextlib import closing
 
 
 class DB_postgress:
-    def __init__(self, name='rtf-parcer', user='postgres', password='qwerty', host='127.0.0.1'):
+    def __init__(self, name='rtf-parcer', user='postgres', password='qwerty', host='localhost'):
         self.name = name
         self.user = user
         self.password = password

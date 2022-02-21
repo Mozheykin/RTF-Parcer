@@ -30,6 +30,7 @@ def parce_args() -> argparse.Namespace:
     parce_arg.add_argument('-s', dest='save_directory', default='resources/')
     parce_arg.add_argument('-db', dest='data_base', default='resources/result.db')
     parce_arg.add_argument('-csv', dest='csv', default='resources/documents.csv')
+    parce_arg.add_argument('-arg', dest='args', default='localhost:postgres:qwerty')
     return parce_arg.parse_args()
 
 
@@ -44,7 +45,7 @@ def main():
     """
     args = parce_args()
     if str(args.functions) in functions_inicialization_dict:
-        functions_inicialization_dict[args.functions].main(path_db=args.data_base, path_csv=args.csv, path_some=args.save_directory)
+        functions_inicialization_dict[args.functions].main(path_db=args.data_base, path_csv=args.csv, path_some=args.save_directory, args=args.args)
     else:
         print(colored(f'Not search inicialization function name, may be you want write this function:\n\t>>> {", ".join(key for key in functions_inicialization_dict)}', 'red'))
 

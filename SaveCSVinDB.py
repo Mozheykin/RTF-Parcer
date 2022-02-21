@@ -2,7 +2,7 @@ import os
 from alive_progress import alive_bar
 import DataBase
 
-def main(path_some, path_db='resources/result.db', path_csv='resources/documents.csv'):
+def main(path_some, path_db='resources/result.db', path_csv='resources/documents.csv', args=''):
     """[summary]
             Получение построчно данных из CSV файла и запись в Базу Данных
     Args:

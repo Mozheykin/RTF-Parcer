@@ -5,7 +5,7 @@ import os
 from alive_progress import alive_bar
 
 
-def main(path_csv, path_some='resources/', path_db='resources/result.db'):
+def main(path_csv, path_some='resources/', path_db='resources/result.db', args=''):
     """[summary]
             Получение пустых полей адвокатов, получение текста из локали или по url и сохранение полей
             спарсенных результатов.
@@ -17,7 +17,8 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
     path_db = os.path.join(os.getcwd(), path_db)
     assert(os.path.isfile(path_db))
     # db = DataBase.Database(path_db=path_db)
-    db = DB_postgresql.DB_postgress()
+    host, password, user = args.split(':')
+    db = DB_postgresql.DB_postgress(user=user, password=password, host=host)
     len_advocate = db.get_len_advocate()[0]
 
     with alive_bar(len_advocate, title='ParceDBadvocate:') as bar:

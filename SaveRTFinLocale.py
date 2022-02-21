@@ -5,7 +5,7 @@ import os
 from alive_progress import alive_bar
 
 
-def main(path_csv, path_some='resources/', path_db='resources/result.db'):
+def main(path_csv, path_some='resources/', path_db='resources/result.db', args=''):
     """[summary]
             Получение списка не сохраненных данных, получение текста по url и
             сохранение файла в локале.
@@ -17,7 +17,8 @@ def main(path_csv, path_some='resources/', path_db='resources/result.db'):
     path_db = os.path.join(os.getcwd(), path_db)
     assert(os.path.isfile(path_db))
     # db = DataBase.Database(path_db=path_db)
-    db = DB_postgresql.DB_postgress()
+    host, password, user = args.split(':')
+    db = DB_postgresql.DB_postgress(user=user, password=password, host=host)
     len_not_save = db.get_len_not_save()[0]
 
     with alive_bar(len_not_save, title='SaveLocale:') as bar:
